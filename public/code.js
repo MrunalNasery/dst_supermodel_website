@@ -30,7 +30,7 @@ function draw1(ctx,Input){
                 showLine:false,
                 borderWidth: 2,
                 fill:false,
-                pointRadius:2,
+                pointRadius:1,
                 pointBackgroundColor:chartColors.blue
 
             },
@@ -50,74 +50,83 @@ function draw1(ctx,Input){
             }]
         },
         options: {
-        	responsive:true,
+            responsive:true,
+            maintainAspectRatio: false,
+            aspectRatio:2,
             scales: {
-            	   	xAxes: [{
+                    xAxes: [{
 
-            	   		type:"time",
-						// distribution: "series",
-            	   		time: {
-            	   		// parser: 'YYYY-MM-DD',
-            	   		// unit : 'day',
-            	   		// unitStepSize: 20,
-            	   		displayFormats: {
-            	   			'day': 'MMM D'
-            	   			},
-            	   		},
-            	   		ticks: {
-                        	beginAtZero: false,
-                        	maxTicksLimit:4,
-                        	fontSize:10,
-                        	fontStyle:'normal',
-                        	maxRotation:0,                       		
-	                    },
-            	   		gridLines: {
-               				// display: false,
-               				drawOnChartArea:false,
-               				lineWidth:2,
-              			},
-            	   }],
-                	yAxes: [{
+                        type:"time",
+                        // distribution: "series",
+                        time: {
+                        // parser: 'YYYY-MM-DD',
+                        // unit : 'day',
+                        // unitStepSize: 20,
+                        displayFormats: {
+                            'day': 'MMM D'
+                            },
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                            maxTicksLimit:4,
+                            fontSize:10,
+                            fontStyle:'normal',
+                            maxRotation:0,                              
+                        },
+                        gridLines: {
+                            // display: false,
+                            drawOnChartArea:false,
+                            lineWidth:2,
+                        },
+                   }],
+                    yAxes: [{
                     ticks: {
                         beginAtZero: false,
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
-                        return value/1000 + 'K'
-                    	},
+                        return value/100000 + 'L'
+                        },
                         fontSize:10,                  
-	                },
+                    },
                     gridLines: {
-               				 // display: false
-               				drawOnChartArea:false,
-               				drawBorder:true,
-               				zeroLineWidth:2,
-               				},
+                             // display: false
+                            drawOnChartArea:false,
+                            drawBorder:true,
+                            zeroLineWidth:2,
+                            },
 
-                	}]
-            	},
-            	fill : false,
-            	title: {
+                    }]
+                },
+                fill : false,
+                title: {
                 display: true,
                 position:'top',
-                text: 'Active Infection',
-                fontSize: 22
+                text: 'Total Deaths',
+                fontSize: 18
             },
-            	legend:{
-            		position:'top',
-            		// usePointStyle:true,
-            		boxWidth:10,
-            	},
-            	 layout: {
-            	padding: {
+                legend:{
+                    position:'top',
+                    // fullWidth:true,
+                    // usePointStyle:true,
+                    display:true,
+                    boxWidth:10,
+                    labels:{
+                        position:'top',
+                        align:'start',
+                        // podding:20,
+                    }
+                },
+                 layout: {
+                padding: {
                 left: 0,
-                right: 0,
+                right: 20,
                 top: 0,
                 bottom: 0
             }
-        	},
-        	// events:['hover','tooltips'],
-        	tooltips: {enabled: true},
-    		hover: {mode: null}
+            },
+            // events:['hover','tooltips'],
+            tooltips: {enabled: true},
+            hover: {mode: null}
         }
 	});
 }
@@ -160,74 +169,87 @@ function draw2(ctx,Input){
             }]
         },
         options: {
-        	responsive:true,
+            responsive:true,
+            maintainAspectRatio: false,
+            aspectRatio:2,
             scales: {
-            	   	xAxes: [{
+                    xAxes: [{
 
-            	   		type:"time",
-						// distribution: "series",
-            	   		time: {
-            	   		// parser: 'YYYY-MM-DD',
-            	   		// unit : 'day',
-            	   		// unitStepSize: 20,
-            	   		displayFormats: {
-            	   			'day': 'MMM D'
-            	   			},
-            	   		},
-            	   		ticks: {
-                        	beginAtZero: false,
-                        	maxTicksLimit:4,
-                        	fontSize:10,
-                        	fontStyle:'normal',
-                        	maxRotation:0,                       		
-	                    },
-            	   		gridLines: {
-               				// display: false,
-               				drawOnChartArea:false,
-               				lineWidth:2,
-              			},
-            	   }],
-                	yAxes: [{
+                        type:"time",
+                        // distribution: "series",
+                        time: {
+                        // parser: 'YYYY-MM-DD',
+                        // unit : 'day',
+                        // unitStepSize: 20,
+                        displayFormats: {
+                            'day': 'MMM D'
+                            },
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                            maxTicksLimit:4,
+                            fontSize:10,
+                            fontStyle:'normal',
+                            maxRotation:0,                              
+                        },
+                        gridLines: {
+                            // display: false,
+                            drawOnChartArea:false,
+                            lineWidth:2,
+                        },
+                   }],
+                    yAxes: [{
                     ticks: {
-                        beginAtZero: false,
+                        beginAtZero: true,
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
-                        return value/1000 + 'K'
-                    	},
-                        fontSize:10,                  
-	                },
+                            if (value >= 0)
+                                return value/100000 + 'L'
+                            else
+                                return 0 + 'L'
+                        },
+                        fontSize:10,
+                        // suggestedMin: 0,                  
+                    },
                     gridLines: {
-               				 // display: false
-               				drawOnChartArea:false,
-               				drawBorder:true,
-               				zeroLineWidth:2,
-               				},
+                             // display: false
+                            drawOnChartArea:false,
+                            drawBorder:true,
+                            zeroLineWidth:2,
+                            },
 
-                	}]
-            	},
-            	fill : false,
-            	title: {
+                    }]
+                },
+                fill : false,
+                title: {
                 display: true,
                 position:'top',
-                text: 'Daily Infection',
-                fontSize: 22
+                text: 'Total Deaths',
+                fontSize: 18
             },
-            	legend:{
-            		position:'top',
-            		// usePointStyle:true,
-            		boxWidth:10,
-            	},
-            	 layout: {
-            	padding: {
+                legend:{
+                    position:'top',
+                    // fullWidth:true,
+                    // usePointStyle:true,
+                    display:true,
+                    boxWidth:10,
+                    labels:{
+                        position:'top',
+                        align:'start',
+                        // podding:20,
+                    }
+                },
+                 layout: {
+                padding: {
                 left: 0,
-                right: 0,
+                right: 20,
                 top: 0,
                 bottom: 0
             }
-        	},
-        	// events:['hover','tooltips'],
-        	tooltips: {enabled: true},
-    		hover: {mode: null}
+            },
+            // events:['hover','tooltips'],
+            tooltips: {enabled: true},
+            hover: {mode: null}
         }
 	});
 }
@@ -270,74 +292,83 @@ function draw3(ctx,Input){
             }]
         },
         options: {
-        	responsive:true,
+            responsive:true,
+            maintainAspectRatio: false,
+            aspectRatio:2,
             scales: {
-            	   	xAxes: [{
+                    xAxes: [{
 
-            	   		type:"time",
-						// distribution: "series",
-            	   		time: {
-            	   		// parser: 'YYYY-MM-DD',
-            	   		// unit : 'day',
-            	   		// unitStepSize: 20,
-            	   		displayFormats: {
-            	   			'day': 'MMM D'
-            	   			},
-            	   		},
-            	   		ticks: {
-                        	beginAtZero: false,
-                        	maxTicksLimit:4,
-                        	fontSize:10,
-                        	fontStyle:'normal',
-                        	maxRotation:0,                       		
-	                    },
-            	   		gridLines: {
-               				// display: false,
-               				drawOnChartArea:false,
-               				lineWidth:2,
-              			},
-            	   }],
-                	yAxes: [{
+                        type:"time",
+                        // distribution: "series",
+                        time: {
+                        // parser: 'YYYY-MM-DD',
+                        // unit : 'day',
+                        // unitStepSize: 20,
+                        displayFormats: {
+                            'day': 'MMM D'
+                            },
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                            maxTicksLimit:4,
+                            fontSize:10,
+                            fontStyle:'normal',
+                            maxRotation:0,                              
+                        },
+                        gridLines: {
+                            // display: false,
+                            drawOnChartArea:false,
+                            lineWidth:2,
+                        },
+                   }],
+                    yAxes: [{
                     ticks: {
                         beginAtZero: false,
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
-                        return value/1000 + 'K'
-                    	},
+                        return value/100000 + 'L'
+                        },
                         fontSize:10,                  
-	                },
+                    },
                     gridLines: {
-               				 // display: false
-               				drawOnChartArea:false,
-               				drawBorder:true,
-               				zeroLineWidth:2,
-               				},
+                             // display: false
+                            drawOnChartArea:false,
+                            drawBorder:true,
+                            zeroLineWidth:2,
+                            },
 
-                	}]
-            	},
-            	fill : false,
-            	title: {
+                    }]
+                },
+                fill : false,
+                title: {
                 display: true,
                 position:'top',
-                text: 'Total Infection',
-                fontSize: 22
+                text: 'Total Deaths',
+                fontSize: 18
             },
-            	legend:{
-            		position:'top',
-            		// usePointStyle:true,
-            		boxWidth:10,
-            	},
-            	 layout: {
-            	padding: {
+                legend:{
+                    position:'top',
+                    // fullWidth:true,
+                    // usePointStyle:true,
+                    display:true,
+                    boxWidth:10,
+                    labels:{
+                        position:'top',
+                        align:'start',
+                        // podding:20,
+                    }
+                },
+                 layout: {
+                padding: {
                 left: 0,
-                right: 0,
+                right: 20,
                 top: 0,
                 bottom: 0
             }
-        	},
-        	// events:['hover','tooltips'],
-        	tooltips: {enabled: true},
-    		hover: {mode: null}
+            },
+            // events:['hover','tooltips'],
+            tooltips: {enabled: true},
+            hover: {mode: null}
         }
 	});
 }
@@ -379,74 +410,83 @@ function draw4(ctx,Input){
             }]
         },
         options: {
-        	responsive:true,
+            responsive:true,
+            maintainAspectRatio: false,
+            aspectRatio:2,
             scales: {
-            	   	xAxes: [{
+                    xAxes: [{
 
-            	   		type:"time",
-						// distribution: "series",
-            	   		time: {
-            	   		// parser: 'YYYY-MM-DD',
-            	   		// unit : 'day',
-            	   		// unitStepSize: 20,
-            	   		displayFormats: {
-            	   			'day': 'MMM D'
-            	   			},
-            	   		},
-            	   		ticks: {
-                        	beginAtZero: false,
-                        	maxTicksLimit:4,
-                        	fontSize:10,
-                        	fontStyle:'normal',
-                        	maxRotation:0,                       		
-	                    },
-            	   		gridLines: {
-               				// display: false,
-               				drawOnChartArea:false,
-               				lineWidth:2,
-              			},
-            	   }],
-                	yAxes: [{
+                        type:"time",
+                        // distribution: "series",
+                        time: {
+                        // parser: 'YYYY-MM-DD',
+                        // unit : 'day',
+                        // unitStepSize: 20,
+                        displayFormats: {
+                            'day': 'MMM D'
+                            },
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                            maxTicksLimit:4,
+                            fontSize:10,
+                            fontStyle:'normal',
+                            maxRotation:0,                              
+                        },
+                        gridLines: {
+                            // display: false,
+                            drawOnChartArea:false,
+                            lineWidth:2,
+                        },
+                   }],
+                    yAxes: [{
                     ticks: {
                         beginAtZero: false,
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
-                        return value/1000 + 'K'
-                    	},
+                        return value/100000 + 'L'
+                        },
                         fontSize:10,                  
-	                },
+                    },
                     gridLines: {
-               				 // display: false
-               				drawOnChartArea:false,
-               				drawBorder:true,
-               				zeroLineWidth:2,
-               				},
+                             // display: false
+                            drawOnChartArea:false,
+                            drawBorder:true,
+                            zeroLineWidth:2,
+                            },
 
-                	}]
-            	},
-            	fill : false,
-            	title: {
+                    }]
+                },
+                fill : false,
+                title: {
                 display: true,
                 position:'top',
-                text: 'Daily Deaths',
-                fontSize: 22
+                text: 'Total Deaths',
+                fontSize: 18
             },
-            	legend:{
-            		position:'top',
-            		// usePointStyle:true,
-            		boxWidth:10,
-            	},
-            	 layout: {
-            	padding: {
+                legend:{
+                    position:'top',
+                    // fullWidth:true,
+                    // usePointStyle:true,
+                    display:true,
+                    boxWidth:10,
+                    labels:{
+                        position:'top',
+                        align:'start',
+                        // podding:20,
+                    }
+                },
+                 layout: {
+                padding: {
                 left: 0,
-                right: 0,
+                right: 20,
                 top: 0,
                 bottom: 0
             }
-        	},
-        	// events:['hover','tooltips'],
-        	tooltips: {enabled: true},
-    		hover: {mode: null}
+            },
+            // events:['hover','tooltips'],
+            tooltips: {enabled: true},
+            hover: {mode: null}
         }
 	});
 }
@@ -491,74 +531,83 @@ function draw5(ctx,Input){
         exportEnabled: true,
 
         options: {
-        	responsive:true,
+            responsive:true,
+            maintainAspectRatio: false,
+            aspectRatio:2,
             scales: {
-            	   	xAxes: [{
+                    xAxes: [{
 
-            	   		type:"time",
-						// distribution: "series",
-            	   		time: {
-            	   		// parser: 'YYYY-MM-DD',
-            	   		// unit : 'day',
-            	   		// unitStepSize: 20,
-            	   		displayFormats: {
-            	   			'day': 'MMM D'
-            	   			},
-            	   		},
-            	   		ticks: {
-                        	beginAtZero: false,
-                        	maxTicksLimit:4,
-                        	fontSize:10,
-                        	fontStyle:'normal',
-                        	maxRotation:0,                       		
-	                    },
-            	   		gridLines: {
-               				// display: false,
-               				drawOnChartArea:false,
-               				lineWidth:2,
-              			},
-            	   }],
-                	yAxes: [{
+                        type:"time",
+                        // distribution: "series",
+                        time: {
+                        // parser: 'YYYY-MM-DD',
+                        // unit : 'day',
+                        // unitStepSize: 20,
+                        displayFormats: {
+                            'day': 'MMM D'
+                            },
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                            maxTicksLimit:4,
+                            fontSize:10,
+                            fontStyle:'normal',
+                            maxRotation:0,                              
+                        },
+                        gridLines: {
+                            // display: false,
+                            drawOnChartArea:false,
+                            lineWidth:2,
+                        },
+                   }],
+                    yAxes: [{
                     ticks: {
                         beginAtZero: false,
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
-                        return value/1000 + 'K'
-                    	},
+                        return value/100000 + 'L'
+                        },
                         fontSize:10,                  
-	                },
+                    },
                     gridLines: {
-               				 // display: false
-               				drawOnChartArea:false,
-               				drawBorder:true,
-               				zeroLineWidth:2,
-               				},
+                             // display: false
+                            drawOnChartArea:false,
+                            drawBorder:true,
+                            zeroLineWidth:2,
+                            },
 
-                	}]
-            	},
-            	fill : false,
-            	title: {
+                    }]
+                },
+                fill : false,
+                title: {
                 display: true,
                 position:'top',
                 text: 'Total Deaths',
-                fontSize: 22
+                fontSize: 18
             },
-            	legend:{
-            		position:'top',
-            		// usePointStyle:true,
-            		boxWidth:10,
-            	},
-            	 layout: {
-            	padding: {
+                legend:{
+                    position:'top',
+                    // fullWidth:true,
+                    // usePointStyle:true,
+                    display:true,
+                    boxWidth:10,
+                    labels:{
+                        position:'top',
+                        align:'start',
+                        // podding:20,
+                    }
+                },
+                 layout: {
+                padding: {
                 left: 0,
-                right: 0,
+                right: 20,
                 top: 0,
                 bottom: 0
             }
-        	},
-        	// events:['hover','tooltips'],
-        	tooltips: {enabled: true},
-    		hover: {mode: null}
+            },
+            // events:['hover','tooltips'],
+            tooltips: {enabled: true},
+            hover: {mode: null}
         }
 	});
 }
@@ -629,72 +678,85 @@ function draw6(ctx,Input){
 
             }]
         },
-        options: {
+                options: {
             responsive:true,
+            maintainAspectRatio: false,
+            aspectRatio:2,
             scales: {
-            	   	xAxes: [{
+                    xAxes: [{
 
-            	   		type:"time",
-						// distribution: "series",
-            	   		time: {
-            	   		// parser: 'YYYY-MM-DD',
-            	   		// unit : 'day',
-            	   		// unitStepSize: 20,
-            	   		displayFormats: {
-            	   			'day': 'MMM D'
-            	   			},
-            	   		},
-            	   		ticks: {
-                        	beginAtZero: false,
-                        	maxTicksLimit:4,
-                        	fontSize:10,
-                        	fontStyle:'normal',
-                        	maxRotation:0,                       		
-	                    },
-            	   		gridLines: {
-               				// display: false,
-               				drawOnChartArea:false,
-               				lineWidth:2,
-              			},
-            	   }],
-                	yAxes: [{
+                        type:"time",
+                        // distribution: "series",
+                        time: {
+                        // parser: 'YYYY-MM-DD',
+                        // unit : 'day',
+                        // unitStepSize: 20,
+                        displayFormats: {
+                            'day': 'MMM D'
+                            },
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                            maxTicksLimit:4,
+                            fontSize:10,
+                            fontStyle:'normal',
+                            maxRotation:0,                              
+                        },
+                        gridLines: {
+                            // display: false,
+                            drawOnChartArea:false,
+                            lineWidth:2,
+                        },
+                   }],
+                    yAxes: [{
                     ticks: {
                         beginAtZero: false,
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
-                        return value/1000 + 'K'
-                    	},
+                        return value/100000 + 'L'
+                        },
                         fontSize:10,                  
-	                },
+                    },
                     gridLines: {
-               				 // display: false
-               				drawOnChartArea:false,
-               				drawBorder:true,
-               				zeroLineWidth:2,
-               				},
+                             // display: false
+                            drawOnChartArea:false,
+                            drawBorder:true,
+                            zeroLineWidth:2,
+                            },
 
-                	}]
-            	},
-            	fill : false,
-            	title: {
+                    }]
+                },
+                fill : false,
+                title: {
                 display: true,
                 position:'top',
-                text: 'Asymptomatic Infection',
-                fontSize: 22
+                text: 'Total Deaths',
+                fontSize: 18
             },
-            	legend:{
-            		position:'top',
-            		// usePointStyle:true,
-            		boxWidth:10,
-            	},
-            	 layout: {
-            	padding: {
+                legend:{
+                    position:'top',
+                    // fullWidth:true,
+                    // usePointStyle:true,
+                    display:true,
+                    boxWidth:10,
+                    labels:{
+                        position:'top',
+                        align:'start',
+                        // podding:20,
+                    }
+                },
+                 layout: {
+                padding: {
                 left: 0,
-                right: 0,
+                right: 20,
                 top: 0,
                 bottom: 0
-            },
             }
-        }
+            },
+            // events:['hover','tooltips'],
+            tooltips: {enabled: true},
+            hover: {mode: null}
+        }        
+            
     });
 }

@@ -47,7 +47,7 @@ const data = await fetch(URL+'/')
 const json = await data.json();
 
 // console.log("inside initialise");
-console.log(json);
+// console.log(json);
 
 delhi.push(json.delhi);
 mumbai.push(json.mumbai);
@@ -60,7 +60,7 @@ await on_delhi();
 
 // console.log(delhi[0]);
 // console.log(delhi[0].Ic);
-// draw_delhi(delhi,delData);
+console.log(json);
 }
 
 async function On_Plot(){
@@ -94,8 +94,8 @@ async function On_Plot(){
 		}
 	});
 	const json = await response.json();
-	console.log(json);
-	db_update(json);
+	delData.pop();
+	delData.push(json.delData);
 	draw_delhi();
 	}
 	if(mum_tab.checked == true){
@@ -107,7 +107,8 @@ async function On_Plot(){
 		}
 	});
 	const json = await response.json();
-	db_update(json);
+	mumData.pop();
+	mumData.push(json.mumData);
 	draw_mumbai();
 	}
 	if(ben_tab.checked == true){
@@ -119,7 +120,8 @@ async function On_Plot(){
 		}
 	});
 	const json = await response.json();
-	db_update(json);
+	benData.pop();
+	benData.push(json.benData);
 	draw_bengaluru(); 
 	}			
 }
@@ -187,7 +189,7 @@ async function on_bengaluru(){
     document.getElementById("R0").defaultValue = "0.0";
       
 
-    draw_bengaluru();
+    await draw_bengaluru();
 }
 
 async function on_mumbai(){
@@ -248,17 +250,6 @@ await draw3(ctx3,[bengaluru[0].Ic,benData[0].Ic]);
 await draw4(ctx4,[bengaluru[0].Ddot,benData[0].gammaDI]);
 await draw5(ctx5,[bengaluru[0].Dc,benData[0].D]);
 await draw6(ctx6,[benData[0].D,benData[0].AplusI,benData[0].AplusI_c,benData[0].Ic]);
-}
-
-async function db_update(json){
-
-delData.pop();
-mumData.pop();
-benData.pop();
-
-delData.push(json.delData);
-mumData.push(json.mumData);
-benData.push(json.benData);
 }
 
 document.getElementById("save1").addEventListener('click', function(){
