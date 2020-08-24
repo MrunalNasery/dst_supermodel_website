@@ -26,7 +26,7 @@ function listen() {
 // app.use("/scripts", express.static(__dirname + '/scripts'));
 // app.use(express.static('public'));
 
-
+  
 app.get('/', async (req, res) => {
 	
 	console.log("inside /");
@@ -36,8 +36,9 @@ app.get('/', async (req, res) => {
 	const bengaluru=await split_data(data.bengaluru);
 
 	const delhi_parameters = {Beta0:0.26,Beta1:0.14,Beta2:0.09,Gamma1:0.039,Gamma2:0.1,Delta:0.01,Gamma_D:0.004,phi:1.0,N:1.8e7,I0:1/(1.8e7),A0:1/(1.8e7),S0:(1-(1/1.8e7+1/8e7)),R0:0.0};
+  console.log(delhi_parameters);
 	const mumbai_parameters = {Beta0:0.3,Beta1:0.12,Beta2:0.09,Gamma1:0.029,Gamma2:0.07,Delta:0.0035,Gamma_D:0.003,phi:1.0,N:1.24e7,I0:1/(1.24e7),A0:1/(1.24e7),S0:(1-(1/1.24e7+1/1.24e7)),R0:0.0};
-	const bengaluru_parameters = {Beta0:0.05,Beta1:0.18,Beta2:0.18,Gamma1:0.034,Gamma2:0.034,Delta:0.0006,Gamma_D:0.002,phi:1.0,N:1.23e7,I0:1/(1.23e7),A0:1/(1.23e7),S0:(1-(1/1.23e7+1/1.23e7)),R0:0.0};
+	const bengaluru_parameters = {Beta0:0.05,Beta1:0.18,Beta2:0.05,Gamma1:0.034,Gamma2:0.034,Delta:0.0006,Gamma_D:0.002,phi:1.0,N:1.23e7,I0:1/(1.23e7),A0:1/(1.23e7),S0:(1-(1/1.23e7+1/1.23e7)),R0:0.0};
 
 	delData = await numericalCalc(delhi_parameters);
 	mumData = await numericalCalc(mumbai_parameters);
@@ -65,14 +66,14 @@ app.post('/delhi',async (req,res) => {
 app.post('/mumbai',async (req,res) => {
 	mumData = await numericalCalc(req.body);
 	res.json({
-		'mumData':delData,
+		'mumData':mumData,
 	});
 });	
 
 app.post('/bengaluru',async (req,res) => {
 	benData = await numericalCalc(req.body);
 	res.json({
-		'benData':delData,
+		'benData':benData,
 	});
 });	
 
