@@ -83,7 +83,7 @@ function draw1(Input){
                         beginAtZero: false,
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
-                        return value/100000 + 'L'
+                        return value/1000 + 'K'
                         },
                         fontSize:10,                  
                     },
@@ -100,7 +100,7 @@ function draw1(Input){
                 title: {
                 display: true,
                 position:'top',
-                text: 'Total Deaths',
+                text: 'Active Infections',
                 fontSize: 18
             },
                 legend:{
@@ -217,7 +217,7 @@ function draw2(Input){
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
                             if (value >= 0)
-                                return value/100000 + 'L'
+                                return value/1000 + 'K'
                             else
                                 return 0 + 'L'
                         },
@@ -237,7 +237,7 @@ function draw2(Input){
                 title: {
                 display: true,
                 position:'top',
-                text: 'Total Deaths',
+                text: 'Daily Infections',
                 fontSize: 18
             },
                 legend:{
@@ -328,7 +328,7 @@ function draw3(Input){
                         // distribution: "series",
                         time: {
                         // parser: 'YYYY-MM-DD',
-                        // unit : 'day',
+                        unit : 'month',
                         // unitStepSize: 20,
                         displayFormats: {
                             'day': 'MMM D'
@@ -369,7 +369,7 @@ function draw3(Input){
                 title: {
                 display: true,
                 position:'top',
-                text: 'Total Deaths',
+                text: 'Total Infections',
                 fontSize: 18
             },
                 legend:{
@@ -484,7 +484,7 @@ function draw4(Input){
                         beginAtZero: false,
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
-                        return value/100000 + 'L'
+                        return value/1000 + 'K'
                         },
                         fontSize:10,                  
                     },
@@ -501,7 +501,7 @@ function draw4(Input){
                 title: {
                 display: true,
                 position:'top',
-                text: 'Total Deaths',
+                text: 'Daily Deaths',
                 fontSize: 18
             },
                 legend:{
@@ -618,7 +618,7 @@ function draw5(Input){
                         beginAtZero: false,
                         maxTicksLimit:4,
                         callback: function(value, index, values) {
-                        return value/100000 + 'L'
+                        return value/1000 + 'K'
                         },
                         fontSize:10,                  
                     },
@@ -796,7 +796,7 @@ function draw6(Input){
                 title: {
                 display: true,
                 position:'top',
-                text: 'Total Deaths',
+                text: 'Asymptomatic Infections',
                 fontSize: 18
             },
                 legend:{

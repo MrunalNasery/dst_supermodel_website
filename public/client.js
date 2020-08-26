@@ -379,14 +379,14 @@ document.getElementById("save6").addEventListener('click', function(){
 function on_real_data(){
 
 	let csvContent = "data:text/csv;charset=utf-8,";
-	csvContent += 'Date'+','+'City'+','+'Confirmed'+','+'Recovered'+','+'Deceased'+','+'Active'+'\n';
+	csvContent += 'Date'+','+'City'+','+'Active Infections'+','+'Daily Infections'+','+'Total Infections'+','+'Daily Deaths'+','+'Total Deaths'+'\n';
 	for(let i=0 ; i<104 ; i++){
 		// var date = delhi[0].Ic[i].x.getFullYear()+'-'+delhi[0].Ic[i].x.getMonth()+'-'+delhi[0].Ic[i].x.getDate();
 		var date = new Date(delhi[0].Ic[i].x);
 		var date_string = date.getFullYear()+'-'+parseInt(date.getMonth()+1)+'-'+date.getDate();
-		var row = date_string+','+'Delhi'+','+delhi[0].Ic[i].y+','+delhi[0].Rc[i].y+','+delhi[0].Dc[i].y+','+delhi[0].Ac[i].y+'\n';
-		row += date_string+','+'Mumbai'+','+mumbai[0].Ic[i].y+','+mumbai[0].Rc[i].y+','+mumbai[0].Dc[i].y+','+mumbai[0].Ac[i].y+'\n';
-		row += date_string+','+'Bengaluru'+','+bengaluru[0].Ic[i].y+','+bengaluru[0].Rc[i].y+','+bengaluru[0].Dc[i].y+','+bengaluru[0].Ac[i].y+'\n';
+		var row = date_string+','+'Delhi'+','+delhi[0].Ac[i].y+','+delhi[0].Idot[i].y+','+delhi[0].Ic[i].y+','+delhi[0].Ddot[i].y+','+delhi[0].Dc[i].y+'\n';
+		row += date_string+','+'Mumbai'+','+mumbai[0].Ac[i].y+','+mumbai[0].Idot[i].y+','+mumbai[0].Ic[i].y+','+mumbai[0].Ddot[i].y+','+mumbai[0].Dc[i].y+'\n';
+		row += date_string+','+'Bengaluru'+','+bengaluru[0].Ac[i].y+','+bengaluru[0].Idot[i].y+','+bengaluru[0].Ic[i].y+','+bengaluru[0].Ddot[i].y+','+bengaluru[0].Dc[i].y+'\n';
 		csvContent += row;
 	}
 	// console.log();
@@ -394,7 +394,7 @@ function on_real_data(){
 	var link = document.createElement("a");
 	link.setAttribute("href", encodedUri);
 	link.setAttribute("download", "real_data.csv");
-	document.body.appendChild(link); // Required for FF
+	document.body.appendChild(link);
 
 	link.click();
 }
@@ -402,14 +402,14 @@ function on_real_data(){
 function on_predictions(){
 
 	let csvContent = "data:text/csv;charset=utf-8,";
-	csvContent += 'Date'+','+'City'+','+'Active Infection'+','+'AplusI'+','+'AplusI_c'+','+'Cumulative Infection'+'\n';
+	csvContent += 'Date'+','+'City'+','+'Active Infections'+','+'Daily Infections'+','+'Total Infections'+','+'Daily Deaths'+','+'Total Deaths'+','+'Asymptomatic Infections'+'\n';
 	for(let i=0 ; i<400 ; i++){
 		// var date = delhi[0].Ic[i].x.getFullYear()+'-'+delhi[0].Ic[i].x.getMonth()+'-'+delhi[0].Ic[i].x.getDate();
 		var date = new Date(delData[0].Ic[i].x);
 		var date_string = date.getFullYear()+'-'+parseInt(date.getMonth()+1)+'-'+date.getDate();
-		var row = date_string+','+'Delhi'+','+delData[0].A[i].y+','+delData[0].AplusI[i].y+','+delData[0].AplusI_c[i].y+','+delData[0].Ic[i].y+'\n';
-		row += date_string+','+'Mumbai'+','+mumData[0].A[i].y+','+mumData[0].AplusI[i].y+','+mumData[0].AplusI_c[i].y+','+mumData[0].Ic[i].y+'\n';
-		row += date_string+','+'Bengaluru'+','+benData[0].A[i].y+','+benData[0].AplusI[i].y+','+benData[0].AplusI_c[i].y+','+benData[0].Ic[i].y+'\n';
+		var row = date_string+','+'Delhi'+','+delData[0].I[i].y+','+delData[0].deltaA[i].y+','+delData[0].Ic[i].y+','+delData[0].gammaDI[i].y+','+delData[0].D[i].y+','+delData[0].AplusI_c[i].y+'\n';
+		row += date_string+','+'Mumbai'+','+mumData[0].I[i].y+','+mumData[0].deltaA[i].y+','+mumData[0].Ic[i].y+','+mumData[0].gammaDI[i].y+','+mumData[0].D[i].y+','+mumData[0].AplusI_c[i].y+'\n';
+		row += date_string+','+'Bengaluru'+','+benData[0].I[i].y+','+benData[0].deltaA[i].y+','+benData[0].Ic[i].y+','+benData[0].gammaDI[i].y+','+benData[0].D[i].y+','+benData[0].AplusI_c[i].y+'\n';
 		csvContent += row;
 	}
 	// console.log();
