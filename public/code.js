@@ -12,12 +12,11 @@ var chartColors = {
 };
 
 
-function draw1(ctx,Input){
+function draw1(Input){
 
-	if(window.chart1 != undefined){
-			window.chart1.destroy();
-	}
-	window.chart1 = new Chart(ctx,{
+    // console.log(40 rem); 
+
+	config = {
 
 	    type: 'line',
         data: {
@@ -128,15 +127,29 @@ function draw1(ctx,Input){
             tooltips: {enabled: true},
             hover: {mode: null}
         }
-	});
+	};
+
+    var x = (document.getElementsByClassName("small-screen"));
+    if(window.getComputedStyle(x[0],null).display !== "none"){
+
+        
+        if(window.chart7 != undefined){
+            window.chart7.destroy();
+        }
+        window.chart7 = new Chart(ctx7,config);
+    }
+    else{
+
+        if(window.chart1 != undefined){
+            window.chart1.destroy();
+        }
+        window.chart1 = new Chart(ctx1,config);   
+    }
 }
 
-function draw2(ctx,Input){
+function draw2(Input){
 
-	if(window.chart2 != undefined){
-			window.chart2.destroy();
-	}
-	window.chart2 = new Chart(ctx,{
+	    config = {
 
 	    type: 'line',
         data: {
@@ -251,15 +264,28 @@ function draw2(ctx,Input){
             tooltips: {enabled: true},
             hover: {mode: null}
         }
-	});
+	};
+   var x = (document.getElementsByClassName("small-screen"));
+    if(window.getComputedStyle(x[0],null).display !== "none"){
+
+        
+        if(window.chart8 != undefined){
+            window.chart8.destroy();
+        }
+        window.chart8 = new Chart(ctx8,config);
+    }
+    else{
+
+        if(window.chart2 != undefined){
+            window.chart2.destroy();
+        }
+        window.chart2 = new Chart(ctx2,config);   
+    }
 }
 
-function draw3(ctx,Input){
+function draw3(Input){
 
-	if(window.chart3 != undefined){
-			window.chart3.destroy();
-	}
-	window.chart3 = new Chart(ctx,{
+	    config = {
 
 	    type: 'line',
         data: {
@@ -370,14 +396,28 @@ function draw3(ctx,Input){
             tooltips: {enabled: true},
             hover: {mode: null}
         }
-	});
-}
-function draw4(ctx,Input){
+	};
+    var x = (document.getElementsByClassName("small-screen"));
+    if(window.getComputedStyle(x[0],null).display !== "none"){
 
-	if(window.chart4 != undefined){
-			window.chart4.destroy();
-	}
-	window.chart4 = new Chart(ctx,{
+        
+        if(window.chart9 != undefined){
+            window.chart9.destroy();
+        }
+        window.chart9 = new Chart(ctx9,config);
+    }
+    else{
+
+        if(window.chart3 != undefined){
+            window.chart3.destroy();
+        }
+        window.chart3 = new Chart(ctx3,config);   
+    }
+}
+
+function draw4(Input){
+
+	    config = {
 
 	    type: 'line',
         data: {
@@ -488,15 +528,28 @@ function draw4(ctx,Input){
             tooltips: {enabled: true},
             hover: {mode: null}
         }
-	});
+	};
+    var x = (document.getElementsByClassName("small-screen"));
+    if(window.getComputedStyle(x[0],null).display !== "none"){
+
+        
+        if(window.chart10 != undefined){
+            window.chart10.destroy();
+        }
+        window.chart10 = new Chart(ctx10,config);
+    }
+    else{
+
+        if(window.chart4 != undefined){
+            window.chart4.destroy();
+        }
+        window.chart4 = new Chart(ctx4,config);   
+    }
 }
 
-function draw5(ctx,Input){
+function draw5(Input){
 
-	if(window.chart5 != undefined){
-			window.chart5.destroy();
-	}
-	window.chart5 = new Chart(ctx,{
+	    config ={
 
 	    type: 'line',
         data: {
@@ -609,16 +662,29 @@ function draw5(ctx,Input){
             tooltips: {enabled: true},
             hover: {mode: null}
         }
-	});
+	};
+    var x = (document.getElementsByClassName("small-screen"));
+    if(window.getComputedStyle(x[0],null).display !== "none"){
+
+        
+        if(window.chart11 != undefined){
+            window.chart11.destroy();
+        }
+        window.chart11 = new Chart(ctx11,config);
+    }
+    else{
+
+        if(window.chart5 != undefined){
+            window.chart5.destroy();
+        }
+        window.chart5 = new Chart(ctx5,config);   
+    }
 }
 
 
-function draw6(ctx,Input){
+function draw6(Input){
 
-	    if(window.chart6 != undefined){
-	    	window.chart6.destroy();
-	    }
-	    window.chart6 = new Chart(ctx, {
+	    config = {
         type: 'line',
         data: {
             datasets: [{
@@ -758,5 +824,21 @@ function draw6(ctx,Input){
             hover: {mode: null}
         }        
             
-    });
+    };
+    var x = (document.getElementsByClassName("small-screen"));
+    if(window.getComputedStyle(x[0],null).display !== "none"){
+
+        
+        if(window.chart12 != undefined){
+            window.chart12.destroy();
+        }
+        window.chart12 = new Chart(ctx12,config);
+    }
+    else{
+
+        if(window.chart6 != undefined){
+            window.chart6.destroy();
+        }
+        window.chart6 = new Chart(ctx6,config);   
+    }
 }

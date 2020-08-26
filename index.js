@@ -16,7 +16,7 @@ var server = app.listen(process.env.PORT || 3000,listen);
 function listen() {
   var host = server.address().address;
   var port = server.address().port;
-  console.log('Example app listening at http://' + host + ':' + port);
+  // console.log('Example app listening at http://' + host + ':' + port);
 }
 
 // var path = require('path');
@@ -29,14 +29,14 @@ function listen() {
   
 app.get('/', async (req, res) => {
 	
-	console.log("inside /");
+	// console.log("inside /");
 	const data = await loadCSV();
 	const delhi = await split_data(data.delhi);
 	const mumbai = await split_data(data.mumbai);
 	const bengaluru=await split_data(data.bengaluru);
 
 	const delhi_parameters = {Beta0:0.26,Beta1:0.14,Beta2:0.09,Gamma1:0.039,Gamma2:0.1,Delta:0.01,Gamma_D:0.004,phi:1.0,N:1.8e7,I0:1/(1.8e7),A0:1/(1.8e7),S0:(1-(1/1.8e7+1/8e7)),R0:0.0};
-  console.log(delhi_parameters);
+  // console.log(delhi_parameters);
 	const mumbai_parameters = {Beta0:0.3,Beta1:0.12,Beta2:0.09,Gamma1:0.029,Gamma2:0.07,Delta:0.0035,Gamma_D:0.003,phi:1.0,N:1.24e7,I0:1/(1.24e7),A0:1/(1.24e7),S0:(1-(1/1.24e7+1/1.24e7)),R0:0.0};
 	const bengaluru_parameters = {Beta0:0.05,Beta1:0.18,Beta2:0.05,Gamma1:0.034,Gamma2:0.034,Delta:0.0006,Gamma_D:0.002,phi:1.0,N:1.23e7,I0:1/(1.23e7),A0:1/(1.23e7),S0:(1-(1/1.23e7+1/1.23e7)),R0:0.0};
 
@@ -126,7 +126,7 @@ async function split_data(data){
         Rdot.push({x:date[i],y:Rc[i].y-Rc[i-1].y});
         Adot.push({x:date[i],y:parseInt(Ic[i].y-Ic[i-1].y-(Rc[i].y-Rc[i-1].y)-(Dc[i].y-Dc[i-1].y))});
     }
-    return({'Idot':Idot,'Ddot':Ddot,'Adot':Adot,'Ic':Ic,'Dc':Dc,'Ac':Ac});    
+    return({'Idot':Idot,'Ddot':Ddot,'Adot':Adot,'Ic':Ic,'Dc':Dc,'Ac':Ac,'Rc':Rc});    
 }	
 
 async function parse_date(date_string){
@@ -134,7 +134,7 @@ async function parse_date(date_string){
 	const date=[];
 	for(let i=0;i<date_string.length;i++){
 		var p = date_string[i].Date.split("-");
-		date.push(new Date(p[0],p[1]-1,p[2]));
+    date.push(new Date(p[0],p[1]-1,p[2]));
 	}
 	return date;
 }

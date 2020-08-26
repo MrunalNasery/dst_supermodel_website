@@ -75,7 +75,8 @@
   </section>
 
   <section id="services" class="bg-light">
-    <div class="container">
+    
+    <div class="container big-screen">
       <div class="row">
         <div class="col-lg-12 mx-auto"> 
           <h2>Predictions</h2>
@@ -83,9 +84,8 @@
       </div>
       <div class="row">
         <div class="col-lg-4 mx-auto">
-          <!-- <div class="row sticky sticky-top sticky-offset"><div class="col-sm-12">Model Inputs</div></div> -->
-          <div class="row sticky sticky-top sticky-offset"><div class="col-sm-12">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <div class="row sticky sticky-top sticky-offset big-screen" style="padding-top: 50px">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-secondary active">
             <input type="radio" name="options" id="Delhi" autocomplete="off" onclick="on_delhi()" checked> Delhi
             </label>
@@ -95,10 +95,11 @@
             <label class="btn btn-secondary">
             <input type="radio" name="options" id="Bengaluru" autocomplete="off" onclick="on_bengaluru()"> Bengaluru
             </label>
-          </div>
+            </div> 
+         
+         <div class="col-lg-12" style="text-align: center; margin-top: 20px">Model Inputs</div>
 
-          <h5 class="top-buffer bottom-buffer center ">Model Inputs</h5>
-          <form id="form">
+         <form id="form" style="margin-top:10px">
           <div class="form-group row">
           <label for="inputEmail3" class="col-sm-3 col-form-label">A0</label>
           <input type="email" class="form-control" id="A0" name="A0">
@@ -151,22 +152,41 @@
           <label for="inputEmail3" class="col-sm-3 col-form-label">Phi</label>
           <input type="email" class="form-control" id="Phi" name="Phi">
           </div>
-          <!-- <div class="form-group row"> -->
-          <!-- <label for="inputEmail3" class="col-sm-12 col-form-label" id="plot" onclick="On_Plot()"></label> -->
-          <!-- </div> -->
-        </form>
-         <div class="form-group row">
-          <div class="col-lg-12 ">
-          <button onclick="On_Plot()" type="submit" class="btn btn-primary">Plot</button>
-          <!-- <button onclick="On_Save()" type="submit" class="btn btn-primary" style="margin-top: 10px">Save All</button> -->
+          </form>
+          <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="text-align: center">
+          <button onclick="On_Plot()" class="btn btn-primary " type="button" style="margin-top: 10px; margin: auto; float:none;">
+            Plot
+          </button>
         </div>
+        <div class="col-sm-3"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="text-align: center">
+          <button class="btn btn-primary btn-mi-small" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample" style="margin: auto; float:none;margin-top: 10px"> 
+          Download CSV
+          </button>
         </div>
-        
-
+        <div class="col-sm-3"></div>
       </div>
-    </div>
+      <div class="collapse" id="collapseExample3">
+        <div class="card card-body">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" style="text-align: center;"></div>
+              <button onclick="on_real_data()" class="btn btn-mi-small" style="color:purple; width:150px; float: none; margin: auto;">
+              <u>Real Data</u>
+              </button>
+              <button onclick="on_predictions()" class="btn btn-mi-small"  style="color:purple; width:150px; float: none; margin: auto;">
+                <u>Predictions</u>
+              </button>
+        </div>
       </div>
-      <div class="col-lg-8 mx-auto">
+  </div>
+</div>
+      
+    <div class="col-lg-8 mx-auto">
           <div class="row top-buffer">
             <div class="col-lg-12 chart-container" style="position: relative; width:100%">           
               <canvas id="myChart1" style="background-color: white">Your browser does not support canvas element!</canvas>
@@ -178,6 +198,7 @@
                 download="active_infection.png" 
                 href=""
                 class="btn btn-primary bg-flat-color-1 save flot-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
                 title="Descargar Gráfico">
                 <i class="fa fa-download"></i>
               </a>
@@ -195,6 +216,7 @@
                 download="daily_infection" 
                 href=""
                 class="btn btn-primary bg-flat-color-1 save flot-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
                 title="Descargar Gráfico">
                 <i class="fa fa-download"></i>
               </a>
@@ -211,6 +233,7 @@
                 download="total_infection" 
                 href=""
                 class="btn btn-primary bg-flat-color-1 save flot-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
                 title="Descargar Gráfico">
                 <i class="fa fa-download"></i>
               </a>
@@ -227,6 +250,7 @@
                 download="daily_deaths" 
                 href=""
                 class="btn btn-primary bg-flat-color-1 save flot-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
                 title="Descargar Gráfico">
                 <i class="fa fa-download"></i>
               </a>
@@ -243,6 +267,7 @@
                 download="total_deaths" 
                 href=""
                 class="btn btn-primary bg-flat-color-1 save flot-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
                 title="Descargar Gráfico">
                 <i class="fa fa-download"></i>
               </a>
@@ -261,6 +286,255 @@
                 download="asymptomatic" 
                 href=""
                 class="btn btn-primary bg-flat-color-1 save float-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
+                title="Descargar Gráfico">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+  
+  
+    <div class="container small-screen">
+      <div class="row">
+        <div class="col-sm-3 mx-auto"> </div>
+        <div class="col-sm-6 mx auto" style="text-align: center"> 
+          <h2>Predictions</h2>
+        </div>
+        <div class="col-sm-3 mx-auto"> </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 mx-auto" style="text-align: center;">
+          <button class="btn btn-primary btn-mi-small" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="margin-right: auto; float:none;">
+          Set Inputs
+          </button>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <div class="btn-group btn-group-toggle small-btn" data-toggle="buttons" style="margin-right: 10px; margin-left: 10px">
+            <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="Delhi_ss" autocomplete="off" onclick="on_delhi()" checked> Delhi
+            </label>
+            <label class="btn btn-secondary">
+            <input type="radio" name="options" id="Mumbai_ss" autocomplete="off" onclick="on_mumbai()"> Mumbai
+            </label>
+            <label class="btn btn-secondary">
+            <input type="radio" name="options" id="Bengaluru_ss" autocomplete="off" onclick="on_bengaluru()"> Bengaluru
+            </label>
+            </div> 
+         <form id="form_ss">
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">A0</label>
+          <input type="email" class="form-control" id="A0_ss" name="A0">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">I0</label>
+          <input type="email" class="form-control" id="I0_ss" name="I0">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">S0</label>
+          <input type="email" class="form-control" id="S0_ss" name="S0">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">R0</label>
+          <input type="email" class="form-control" id="R0_ss" name="R0">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">N</label>
+          <input type="email" class="form-control" id="N_ss" name="N">
+          </div>
+          <div class="form-group row ">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">Beta0</label>
+          <input type="email" class="form-control" id="Beta0_ss" name="Beta0">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">Beta1</label>
+          <input type="email" class="form-control" id="Beta1_ss" name="Beta1">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">Beta2</label>
+          <input type="email" class="form-control" id="Beta2_ss" name="Beta2">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">Gamma1</label>
+          <input type="email" class="form-control" id="Gamma1_ss" name="Gamma1">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">Gamma2</label>
+          <input type="email" class="form-control" id="Gamma2_ss" name="Gamma2">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">Delta</label>
+          <input type="email" class="form-control" id="Delta_ss" name="Delta">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form -label">Gamma_D</label>
+          <input type="email" class="form-control" id="Gamma_D_ss" name="Gamma_D">
+          </div>
+          <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-3 col-form-label">Phi</label>
+          <input type="email" class="form-control" id="Phi_ss" name="Phi">
+          </div>
+          <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="text-align: center">
+          <button onclick="On_Plot()" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" type="button" style="margin-top: 10px; float:none; margin-right: 10px;margin-left: 10px">
+            Save
+          </button>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+        </form>         
+  </div>
+</div>
+<div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="text-align: center; margin-top: 10px"> 
+          <button class="btn btn-primary btn-mi-small" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" style="margin-right: auto; float:none;"> 
+          Download CSV
+          </button>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+      <div class="collapse" id="collapseExample2">
+        <div class="card card-body">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" style="text-align: center;"></div>
+              <button onclick="on_real_data()" class="btn btn-mi-small" style="color:purple; width:150px; float: none; margin: auto;">
+              <u>Real Data</u>
+              </button>
+              <button onclick="on_predictions()" class="btn btn-mi-small"  style="color:purple; width:150px; float: none; margin: auto;">
+                <u>Predictions</u>
+              </button>
+        </div>
+      </div>
+
+  <div class="row sticky sticky-top">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8" style="text-align: center; margin-top: 10px">
+  <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-left:10px; margin-right: 10px">
+            <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="Delhi_chart" autocomplete="off" onclick="on_delhi()" checked> Delhi
+            </label>
+            <label class="btn btn-secondary">
+            <input type="radio" name="options" id="Mumbai_chart" autocomplete="off" onclick="on_mumbai()"> Mumbai
+            </label>
+            <label class="btn btn-secondary">
+            <input type="radio" name="options" id="Bengaluru_chart" autocomplete="off" onclick="on_bengaluru()"> Bengaluru
+            </label>
+          </div>
+        </div>
+    <div class="col-sm-2 "></div>
+  </div>
+
+
+          <div class="row top-buffer">
+            <div class="col-lg-12 chart-container" style="position: relative; width:100%">           
+              <canvas id="myChart7" style="background-color: white">Your browser does not support canvas element!</canvas>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="col-sm-12 mx-auto"> -->
+            <div class="col-sm-12" style="text-align: right">
+              <a id="save1"
+                download="active_infection.png" 
+                href=""
+                class="btn btn-primary bg-flat-color-1 save";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
+                title="Descargar Gráfico">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="row top-buffer">
+            <div class="col-lg-12 chart-container" style="position: relative; width:100%">           
+              <canvas id="myChart8" style="background-color: white">Your browser does not support canvas element!</canvas>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <a id="save2"
+                download="daily_infection" 
+                href=""
+                class="btn btn-primary bg-flat-color-1 save flot-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
+                title="Descargar Gráfico">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+          </div>
+          <div class="row top-buffer">
+            <div class="col-lg-12 chart-container" style="position: relative; width:100%">           
+              <canvas id="myChart9" style="background-color: white">Your browser does not support canvas element!</canvas>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <a id="save3"
+                download="total_infection" 
+                href=""
+                class="btn btn-primary bg-flat-color-1 save flot-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
+                title="Descargar Gráfico">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+          </div>
+          <div class="row top-buffer">
+            <div class="col-lg-12 chart-container" style="position: relative; width:100%">           
+              <canvas id="myChart10" style="background-color: white">Your browser does not support canvas element!</canvas>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <a id="save4"
+                download="daily_deaths" 
+                href=""
+                class="btn btn-primary bg-flat-color-1 save flot-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
+                title="Descargar Gráfico">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+          </div>
+          <div class="row top-buffer">
+              <div class="col-lg-12 chart-container" style="position: relative; width:100%">
+                <canvas id="myChart11" style="background-color: white">Your browser does not support canvas element!</canvas>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <a id="save5"
+                download="total_deaths" 
+                href=""
+                class="btn btn-primary bg-flat-color-1 save flot-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
+                title="Descargar Gráfico">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+          </div>
+          <div class="row top-buffer">
+              <!-- <canvas class="chart" id="myChart6"width="1000" height="500" style="background-color: white">Your browser does not support canvas element!</canvas> -->
+              <div class="col-lg-12 chart-container" style="position: relative; width:100%">
+              <canvas id="myChart12" style="background-color: white">Your browser does not support canvas element!</canvas>
+              </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <a id="save6"
+                download="asymptomatic" 
+                href=""
+                class="btn btn-primary bg-flat-color-1 save float-right margin-right";
+                style="margin-right: 0px; text-align: center;font-size: 10px;width:40px"; 
                 title="Descargar Gráfico">
                 <i class="fa fa-download"></i>
               </a>
