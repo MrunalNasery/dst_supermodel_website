@@ -36,15 +36,20 @@ app.get('/', async (req, res) => {
 	const bengaluru=await split_data(data.bengaluru);
 
   var N_mum = 1.24e7;
-  var I0_mum = 1/N;
-  var A0_mum = 1/N;
-  var S0_mum = 1-(A0+I0);
+  var I0_mum = 1/N_mum;
+  var A0_mum = 1/N_mum;
+  var S0_mum = 1-(A0_mum+I0_mum);
+
+  var N_ben = 1.23e7;
+  var I0_ben = 1/N_ben;
+  var A0_ben = 1/N_ben;
+  var S0_ben = 1-(A0_ben+I0_ben);
 
 	const delhi_parameters = {Beta0:0.26,Beta1:0.14,Beta2:0.09,Gamma1:0.039,Gamma2:0.1,Delta:0.01,Gamma_D:0.004,phi:1.0,N:1.8e7,I0:parseFloat(1/(1.8e7)),A0:1/(1.8e7),S0:(1-(1/1.8e7+1/8e7)),R0:0.0};
   // console.log(delhi_parameters);
 	const mumbai_parameters = {Beta0:0.3,Beta1:0.12,Beta2:0.09,Gamma1:0.029,Gamma2:0.07,Delta:0.0035,Gamma_D:0.003,phi:1.0,N:N_mum,I0:I0_mum,A0:A0_mum,S0:S0_mum,R0:0.0};
 
-  const bengaluru_parameters = {Beta0:0.05,Beta1:0.18,Beta2:0.05,Gamma1:0.034,Gamma2:0.034,Delta:0.0006,Gamma_D:0.002,phi:1.0,N:1.23e7,I0:1/(1.23e7),A0:1/(1.23e7),S0:(1-(1/1.23e7+1/1.23e7)),R0:0.0};
+  const bengaluru_parameters = {Beta0:0.05,Beta1:0.18,Beta2:0.05,Gamma1:0.034,Gamma2:0.034,Delta:0.0006,Gamma_D:0.002,phi:1.0,N:N_ben,I0:I0_ben,A0:A0_ben,S0:S0_ben,R0:0.0};
   console.log(mumbai_parameters);
 
 
@@ -72,6 +77,7 @@ app.post('/delhi',async (req,res) => {
 });	
 
 app.post('/mumbai',async (req,res) => {
+  console.log(req.body);
 	mumData = await numericalCalc(req.body);
 	res.json({
 		'mumData':mumData,

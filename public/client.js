@@ -104,7 +104,7 @@ async function On_Plot(){
 						'N' : formData.get('N'),
 					};
 	// console.log("parameters done");
-	console.log(parameters);	
+	// console.log(parameters);	
 	// console.log(del_tab_ss.checked);
 
 	if(del_tab.checked == true || del_tab_ss.checked == true){
@@ -194,8 +194,8 @@ async function on_delhi(){
 
 
     // console.log(document.getElementById("Delhi_chart").checked);
-    console.log(document.getElementById("Delhi_ss").checked);
-    console.log(del_tab_ss.checked);
+    // console.log(document.getElementById("Delhi_ss").checked);
+    // console.log(del_tab_ss.checked);
 
     await draw_delhi();
 
@@ -268,7 +268,7 @@ async function on_bengaluru(){
     document.getElementById("S0").defaultValue = S0.toPrecision(5);
     document.getElementById("R0").defaultValue = "0.0";    
 
-    console.log(document.getElementById("Phi").defaultValue);
+    // console.log(document.getElementById("Phi").defaultValue);
 
     document.getElementById("Bengaluru").checked = true;
     await draw_bengaluru();
