@@ -22,6 +22,8 @@ const del_tab_ss = document.getElementById("Delhi_ss");
 const mum_tab_ss = document.getElementById("Mumbai_ss");
 const ben_tab_ss = document.getElementById("Bengaluru_ss");
 
+
+
 // console.log(window.location.hostname);
 const URL = window.location.hostname === ('127.0.0.1' || 'localhost') ? 'http://localhost:3000' : 'https://dstsupermodel.herokuapp.com';
 const delhi=[];
@@ -102,7 +104,7 @@ async function On_Plot(){
 						'N' : formData.get('N'),
 					};
 	// console.log("parameters done");
-	// console.log(parameters);	
+	console.log(parameters);	
 	// console.log(del_tab_ss.checked);
 
 	if(del_tab.checked == true || del_tab_ss.checked == true){
@@ -121,7 +123,7 @@ async function On_Plot(){
 	const json = await response.json();
 	delData.pop();
 	delData.push(json.delData);
-	draw_delhi();
+	on_delhi();
 	}
 	if(mum_tab.checked == true || mum_tab_ss.checked == true){
 	const response = await fetch(URL+'/mumbai',{
@@ -134,7 +136,7 @@ async function On_Plot(){
 	const json = await response.json();
 	mumData.pop();
 	mumData.push(json.mumData);
-	draw_mumbai();
+	on_mumbai();
 	}
 	if(ben_tab.checked == true || ben_tab_ss.checked == true){
 	const response = await fetch(URL+'/bengaluru',{
@@ -147,7 +149,7 @@ async function On_Plot(){
 	const json = await response.json();
 	benData.pop();
 	benData.push(json.benData);
-	draw_bengaluru(); 
+	on_bengaluru(); 
 	}			
 }
 
@@ -173,7 +175,7 @@ async function on_delhi(){
 	var x = (document.getElementsByClassName("small-screen"));
     if(window.getComputedStyle(x[0],null).display !== "none"){
 
-   	document.getElementById("Beta0_ss").defaultValue = "0.26";
+    document.getElementById("Beta0_ss").defaultValue = "0.26";
     document.getElementById("Beta1_ss").defaultValue = "0.14";
     document.getElementById("Beta2_ss").defaultValue = "0.09";
     document.getElementById("Gamma1_ss").defaultValue = "0.039";
@@ -188,8 +190,17 @@ async function on_delhi(){
     document.getElementById("Phi_ss").defaultValue = "1.0";
 
     document.getElementById("Delhi_ss").checked = true;
+    // document.getElementById("Delhi_chart").checked = true;
+
+
+    // console.log(document.getElementById("Delhi_chart").checked);
+    console.log(document.getElementById("Delhi_ss").checked);
+    console.log(del_tab_ss.checked);
+
+    await draw_delhi();
 
     }
+
     else{	
 
 	document.getElementById("Beta0").defaultValue = "0.26";
@@ -207,11 +218,10 @@ async function on_delhi(){
     document.getElementById("Phi").defaultValue = "1.0";
 
     document.getElementById("Delhi").checked = true;
-
-	}
-    
-    
     await draw_delhi();
+
+    }
+   
 }
 
 async function on_bengaluru(){
@@ -221,6 +231,29 @@ async function on_bengaluru(){
 	var A0 = 1/N;
 	var S0 = 1-(A0+I0);
 
+	var x = (document.getElementsByClassName("small-screen"));
+
+	if(window.getComputedStyle(x[0],null).display !== "none"){
+
+	document.getElementById("Beta0_ss").defaultValue = "0.05";
+    document.getElementById("Beta1_ss").defaultValue = "0.18";
+    document.getElementById("Beta2_ss").defaultValue = "0.05";
+    document.getElementById("Gamma1_ss").defaultValue = "0.034";
+    document.getElementById("Gamma2_ss").defaultValue = "0.034";
+    document.getElementById("Delta_ss").defaultValue = "0.0006";
+    document.getElementById("Gamma_D_ss").defaultValue = "0.002";
+    document.getElementById("Phi_ss").defaultValue = "1.0";
+    document.getElementById("N_ss").defaultValue = N;
+    document.getElementById("I0_ss").defaultValue = I0.toPrecision(5);
+	document.getElementById("A0_ss").defaultValue = A0.toPrecision(5);
+    document.getElementById("S0_ss").defaultValue = S0.toPrecision(5);
+    document.getElementById("R0_ss").defaultValue = "0.0";    
+    
+    // document.getElementById("Bengaluru_ss").checked = true;
+    await draw_bengaluru();
+    }
+    else{
+
     document.getElementById("Beta0").defaultValue = "0.05";
     document.getElementById("Beta1").defaultValue = "0.18";
     document.getElementById("Beta2").defaultValue = "0.05";
@@ -229,65 +262,32 @@ async function on_bengaluru(){
     document.getElementById("Delta").defaultValue = "0.0006";
     document.getElementById("Gamma_D").defaultValue = "0.002";
     document.getElementById("Phi").defaultValue = "1.0";
-    document.getElementById("A0").defaultValue = "0.26";
-    document.getElementById("I0").defaultValue = "0.14";
-    document.getElementById("S0").defaultValue = "0.09";
-    document.getElementById("R0").defaultValue = "0.039";
-    document.getElementById("N").defaultValue = "0.1";
     document.getElementById("N").defaultValue = N;
     document.getElementById("I0").defaultValue = I0.toPrecision(5);
 	document.getElementById("A0").defaultValue = A0.toPrecision(5);
     document.getElementById("S0").defaultValue = S0.toPrecision(5);
-    document.getElementById("R0").defaultValue = "0.0";
-    document.getElementById("Beta0_ss").defaultValue = "0.05";
-    document.getElementById("Beta1_ss").defaultValue = "0.18";
-    document.getElementById("Beta2_ss").defaultValue = "0.05";
-    document.getElementById("Gamma1_ss").defaultValue = "0.034";
-    document.getElementById("Gamma2_ss").defaultValue = "0.034";
-    document.getElementById("Delta_ss").defaultValue = "0.0006";
-    document.getElementById("Gamma_D_ss").defaultValue = "0.002";
-    document.getElementById("Phi_ss").defaultValue = "1.0";
-    document.getElementById("A0_ss").defaultValue = "0.26";
-    document.getElementById("I0_ss").defaultValue = "0.14";
-    document.getElementById("S0_ss").defaultValue = "0.09";
-    document.getElementById("R0_ss").defaultValue = "0.039";
-    document.getElementById("N_ss").defaultValue = "0.1";
-    document.getElementById("N_ss").defaultValue = N;
-    document.getElementById("I0_ss").defaultValue = I0.toPrecision(5);
-	document.getElementById("A0_ss").defaultValue = A0.toPrecision(5);
-    document.getElementById("S0_ss").defaultValue = S0.toPrecision(5);
-    document.getElementById("R0_ss").defaultValue = "0.0";
-      
+    document.getElementById("R0").defaultValue = "0.0";    
 
+    console.log(document.getElementById("Phi").defaultValue);
+
+    document.getElementById("Bengaluru").checked = true;
     await draw_bengaluru();
+
+    }      
+
 }
 
 async function on_mumbai(){
 
-	var N = 1.23e7;
+	var N = 1.24e7;
 	var I0 = 1/N;
 	var A0 = 1/N;
 	var S0 = 1-(A0+I0);
 
-    document.getElementById("Beta0").defaultValue = "0.3";
-    document.getElementById("Beta1").defaultValue = "0.12";
-    document.getElementById("Beta2").defaultValue = "0.09";
-    document.getElementById("Gamma1").defaultValue = "0.029";
-    document.getElementById("Gamma2").defaultValue = "0.07";
-    document.getElementById("Delta").defaultValue = "0.0035";
-    document.getElementById("Gamma_D").defaultValue = "0.003";
-    document.getElementById("Phi").defaultValue = "1.0";
-    document.getElementById("A0").defaultValue = "0.26";
-    document.getElementById("I0").defaultValue = "0.14";
-    document.getElementById("S0").defaultValue = "0.09";
-    document.getElementById("R0").defaultValue = "0.039";
-    document.getElementById("N").defaultValue = "0.1";
-    document.getElementById("N").defaultValue = N;
-    document.getElementById("I0").defaultValue = I0.toPrecision(5);
-	document.getElementById("A0").defaultValue = A0.toPrecision(5);
-    document.getElementById("S0").defaultValue = S0.toPrecision(5);
-    document.getElementById("R0").defaultValue = "0.0";
-    document.getElementById("Beta0_ss").defaultValue = "0.3";
+	var x = (document.getElementsByClassName("small-screen"));
+
+	if(window.getComputedStyle(x[0],null).display !== "none"){
+	document.getElementById("Beta0_ss").defaultValue = "0.3";
     document.getElementById("Beta1_ss").defaultValue = "0.12";
     document.getElementById("Beta2_ss").defaultValue = "0.09";
     document.getElementById("Gamma1_ss").defaultValue = "0.029";
@@ -295,18 +295,37 @@ async function on_mumbai(){
     document.getElementById("Delta_ss").defaultValue = "0.0035";
     document.getElementById("Gamma_D_ss").defaultValue = "0.003";
     document.getElementById("Phi_ss").defaultValue = "1.0";
-    document.getElementById("A0_ss").defaultValue = "0.26";
-    document.getElementById("I0_ss").defaultValue = "0.14";
-    document.getElementById("S0_ss").defaultValue = "0.09";
-    document.getElementById("R0_ss").defaultValue = "0.039";
-    document.getElementById("N_ss").defaultValue = "0.1";
     document.getElementById("N_ss").defaultValue = N;
     document.getElementById("I0_ss").defaultValue = I0.toPrecision(5);
 	document.getElementById("A0_ss").defaultValue = A0.toPrecision(5);
     document.getElementById("S0_ss").defaultValue = S0.toPrecision(5);
     document.getElementById("R0_ss").defaultValue = "0.0";
 
+    // document.getElementById("Mumbai_ss").checked = true;
     await draw_mumbai();
+	}
+
+	else{
+
+	document.getElementById("Beta0").defaultValue = "0.3";
+    document.getElementById("Beta1").defaultValue = "0.12";
+    document.getElementById("Beta2").defaultValue = "0.09";
+    document.getElementById("Gamma1").defaultValue = "0.029";
+    document.getElementById("Gamma2").defaultValue = "0.07";
+    document.getElementById("Delta").defaultValue = "0.0035";
+    document.getElementById("Gamma_D").defaultValue = "0.003";
+    document.getElementById("Phi").defaultValue = "1.0";
+    document.getElementById("N").defaultValue = N;
+    document.getElementById("I0").defaultValue = I0.toPrecision(5);
+	document.getElementById("A0").defaultValue = A0.toPrecision(5);
+    document.getElementById("S0").defaultValue = S0.toPrecision(5);
+    document.getElementById("R0").defaultValue = "0.0";    
+
+    document.getElementById("Mumbai").checked = true;
+    await draw_mumbai();
+
+    }
+
 }
 
 
